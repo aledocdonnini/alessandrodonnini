@@ -2,6 +2,8 @@ import * as queries from 'api/queries';
 import fetchData from 'api/dato';
 import { Image as DatoImage } from 'react-datocms';
 import Link from 'next/link';
+import { motion } from "framer-motion";
+
 import Layout from 'components/Layout'
 
 export default function Works({ worksIndex, allWorks }) {
@@ -9,18 +11,18 @@ export default function Works({ worksIndex, allWorks }) {
   return (
     <Layout {...worksIndex}>
       {introImage &&
-        <div>
-          <DatoImage
-            className="dato-image-cover"
-            data={introImage?.responsiveImage}
-            alt={introImage?.responsiveImage.alt}
-            title={introImage?.responsiveImage.title}
-          />
-        </div>
+        <DatoImage
+          className="dato-image-cover"
+          data={introImage?.responsiveImage}
+          alt={introImage?.responsiveImage.alt}
+          title={introImage?.responsiveImage.title}
+        />
       }
+
       <h1 className="text-6xl font-bold tracking-tighter mt-2">
         {title}
       </h1>
+
       <p className="mt-4 text-lg">
         {text}
       </p>
@@ -30,20 +32,27 @@ export default function Works({ worksIndex, allWorks }) {
           const { title, text, introImage } = w;
           return (
             <div className="w-1/3" key={w.id}>
-              <div className="h-48">
+              <div>
                 <Link href={w.slug}>
                   <a className="underline hover:no-underline">
-                    <DatoImage
-                      className="dato-image-cover"
-                      data={introImage?.responsiveImage}
-                      alt={introImage?.responsiveImage.alt}
-                      title={introImage?.responsiveImage.title}
-                    />
+                    <motion.div layoutId={`image-${w.id}`}>
+                      <div className="h-32">
+                        <DatoImage
+                          className="dato-image-cover"
+                          data={introImage?.responsiveImage}
+                          alt={introImage?.responsiveImage.alt}
+                          title={introImage?.responsiveImage.title}
+                        />
+                      </div>
+                    </motion.div>
                   </a>
                 </Link>
-                <p className="text-xl font-bold">
-                  {title}
-                </p>
+                <motion.p layoutId={`title-${w.id}`}
+                >
+                  <p className="text-xl font-bold text-center">
+                    {title}
+                  </p>
+                </motion.p>
               </div>
             </div>
           )
