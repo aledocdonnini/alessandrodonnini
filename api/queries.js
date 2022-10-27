@@ -168,10 +168,74 @@ query homepage($locale: SiteLocale) {
     _modelApiKey
     id
     title
+    text
     seo: _seoMetaTags {
       ${seoBlock}
     }
   }
 }
 `;
+export const about = `
+query about($locale: SiteLocale) {
+  about(locale: $locale) {
+    _modelApiKey
+    id
+    title
+    text
+    seo: _seoMetaTags {
+      ${seoBlock}
+    }
+  }
+}
+`;
+export const worksIndex = `
+query worksIndex($locale: SiteLocale) {
+  worksIndex(locale: $locale){
+    id
+    title
+    text
+    slug
+    seo: _seoMetaTags {
+      ${seoBlock}
+    }
+  }
+}
+`;
+export const allWorks = `
+query allWorks($locale: SiteLocale) {
+  allWorks(locale: $locale) {
+    _modelApiKey
+    _allSlugLocales {
+      locale
+      value
+    }
+    id
+    title
+    text
+    slug
+    introImage {
+      responsiveImage(sizes: "100vw, 1200px", imgixParams: {auto: [format, compress], fit: crop}) {
+        ...imgFrag
+      }
+    }
+  }
+}
+${imgFrag}
+`;
 
+export const work = `
+query works($slug: String!, $locale: SiteLocale!) {
+  work(filter: { slug: { eq: $slug } }, locale: $locale) {
+    id
+    slug
+    text
+    title
+    introImage {
+      responsiveImage(sizes: "100vw, 1200px", imgixParams: { auto: [format, compress], fit: crop }) {
+        ...imgFrag
+      }
+    }
+  }
+}
+${imgFrag}
+`;

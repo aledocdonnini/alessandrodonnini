@@ -1,22 +1,24 @@
 import * as queries from 'api/queries';
 import fetchData from 'api/dato';
-import Layout from 'components/Layout';
+import Layout from 'components/Layout'
 
-export default function Home({ homepage }) {
+
+export default function About({ about }) {
+
   return (
-    <Layout {...homepage}/>
+    <Layout {...about} />
   )
 }
 
 export async function getStaticProps({ locale = 'it', preview }) {
-  const response = await fetchData(queries.home, { locale }, preview);
+  const response = await fetchData(queries.about, { locale }, preview);
   const { site } = await fetchData(queries.site, { locale });
-  const { homepage } = response;
+  const { about } = response;
 
   return {
     props: {
       site,
-      homepage,
+      about,
       locale,
     },
   };

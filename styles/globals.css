@@ -1,9 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 a {
@@ -20,7 +27,31 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    background: white;
+    color: black;
   }
+}
+
+.dato-image-contain,
+.dato-image-cover {
+  height: 100%;
+  max-width: 100% !important;
+}
+.dato-image-contain picture,
+.dato-image-cover picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.dato-image-cover picture img {
+  object-fit: cover;
+  object-position: center;
+}
+.dato-image-contain picture img {
+  object-fit: contain;
+  object-position: center;
 }
