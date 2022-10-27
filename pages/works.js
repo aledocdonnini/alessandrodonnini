@@ -5,8 +5,26 @@ import Link from 'next/link';
 import Layout from 'components/Layout'
 
 export default function Works({ worksIndex, allWorks }) {
+  const { title, text, introImage } = worksIndex
   return (
     <Layout {...worksIndex}>
+      {introImage &&
+        <div>
+          <DatoImage
+            className="dato-image-cover"
+            data={introImage?.responsiveImage}
+            alt={introImage?.responsiveImage.alt}
+            title={introImage?.responsiveImage.title}
+          />
+        </div>
+      }
+      <h1 className="text-6xl font-bold tracking-tighter mt-2">
+        {title}
+      </h1>
+      <p className="mt-4 text-lg">
+        {text}
+      </p>
+
       <div className="flex gap-4 mt-10">
         {allWorks.map(w=>{
           const { title, text, introImage } = w;

@@ -1,7 +1,7 @@
 import { Image as DatoImage } from 'react-datocms';
 import Link from 'next/link';
 
-export default function Layout({ title, text, introImage= null, children }) {
+export default function Layout({ children }) {
   return (
     <div className="container mx-auto">
       <header className="flex justify-between items-center mb-10 py-4">
@@ -29,21 +29,6 @@ export default function Layout({ title, text, introImage= null, children }) {
         </nav>
       </header>
       <main>
-
-        {introImage &&
-          <div>
-            <DatoImage
-              className="dato-image-cover"
-              data={introImage?.responsiveImage}
-              alt={introImage?.responsiveImage.alt}
-              title={introImage?.responsiveImage.title}
-            />
-          </div>
-        }
-        <h1 className="text-6xl font-bold tracking-tighter mt-2">
-          {title}
-        </h1>
-        <p className="mt-4 text-lg">{text}</p>
         {children}
       </main>
     </div>

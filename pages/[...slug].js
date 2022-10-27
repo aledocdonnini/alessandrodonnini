@@ -7,8 +7,24 @@ import Layout from 'components/Layout'
 
 
 export default function Work({ work }) {
+  const {title, text, introImage} = work
   return (
-    <Layout {...work} />
+    <Layout>
+      <h1 className="text-6xl font-bold tracking-tighter mt-2">
+        {title}
+      </h1>
+      <div>
+        <DatoImage
+          className="dato-image-cover"
+          data={introImage?.responsiveImage}
+          alt={introImage?.responsiveImage.alt}
+          title={introImage?.responsiveImage.title}
+        />
+      </div>
+      <p className="mt-4 text-lg">
+        {text}
+      </p>
+    </Layout>
   )
 }
 export async function getStaticPaths() {
