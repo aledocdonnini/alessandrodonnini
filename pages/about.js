@@ -1,5 +1,6 @@
 import * as queries from 'api/queries';
 import fetchData from 'api/dato';
+import { Image as DatoImage } from 'react-datocms';
 import Layout from 'components/Layout'
 
 

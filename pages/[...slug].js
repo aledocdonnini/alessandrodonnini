@@ -35,7 +35,7 @@ export default function Work({ work }) {
       </p>
       <p className="mt-4 text-lg">
         <Link href="/works">
-          <a href="/works">
+          <a title="back">
             back
           </a>
         </Link>
