@@ -34,7 +34,7 @@ a {
 
 .dato-image-contain,
 .dato-image-cover {
-  height: 100%;
+  /* height: 100%; */
   max-width: 100% !important;
 }
 .dato-image-contain picture,
@@ -47,11 +47,17 @@ a {
   width: 100%;
   height: 100%;
 }
+.dato-image-cover img,
+.dato-image-contain img {
+  height: 100%;
+}
 .dato-image-cover picture img {
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
 .dato-image-contain picture img {
+  height: 100%;
   object-fit: contain;
   object-position: center;
 }

@@ -4,11 +4,12 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class' or false
   theme: {
     colors: {
-      white: "#ffffff",
-      black: "#292723",
-      gray: "#999999",
+      white: "#eee",
+      black: "#222",
+      gray: "#444",
+      grayM: "#666",
       grayL: "#cccccc",
-      primary: " #575CE8",
+      primary: "#575CE8",
       secondary: "#FD7CFF",
     },
     fontFamily: {

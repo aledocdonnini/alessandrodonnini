@@ -1,45 +1,76 @@
+import { useRef, useLayoutEffect, useEffect } from 'react';
 import * as queries from 'api/queries';
 import fetchData from 'api/dato';
 import { localizedSlugs } from 'lib/utils/pathUtils';
-import { Image as DatoImage } from 'react-datocms';
+// import { Image as DatoImage } from 'react-datocms';
+import Image from 'next/image'
 import Link from 'next/link';
-import { motion } from "framer-motion";
 
 import Layout from 'components/Layout'
+import useWindowSize from 'hooks/useWindowSize'
+import { gsap } from "gsap";
 
 
 export default function Work({ work }) {
   const {title, text, introImage} = work
+  const targetRef = useRef();
+  const size = useWindowSize();
+
+  useLayoutEffect(()=>{
+    const style = {
+      x: - targetRef.current.offsetLeft,
+      y: - targetRef.current.offsetTop,
+      width: size.width,
+      height: size.height,
+      delay: .1,
+      // autoRound: false,
+      duration: 1,
+      ease: "circ.inOut",
+      // position: "absolute",
+      zIndex: 5
+      // onComplete: onComplete
+    };
+
+    if (size.height) {
+      gsap.from(targetRef.current, style);
+    }
+  }, [size, targetRef])
+
   return (
     <Layout>
-      <motion.div layoutId={`image-${work.id}`}>
-        <div className="h-80">
-          <DatoImage
-            className="dato-image-cover"
-            data={introImage?.responsiveImage}
-            alt={introImage?.responsiveImage.alt}
-            title={introImage?.responsiveImage.title}
-          />
-        </div>
-      </motion.div>
-      <motion.p
-        layoutId={`title-${work.id}`}
-        transition={{ delay: 0.2 }}
-      >
-        <p className="text-6xl font-bold tracking-tighter mt-2 text-left">
-          {title}
+
+      {/* <DatoImage
+        ref={targetRef}
+        className="js-image dato-image-cover"
+        data={introImage?.responsiveImage}
+        alt={introImage?.responsiveImage.alt}
+        title={introImage?.responsiveImage.title}
+      /> */}
+      <Image
+        ref={targetRef}
+        className="dato-image-cover"
+        src={introImage?.src}
+        width="500"
+        height="500"
+        alt={introImage?.alt}
+        // title={introImage?.responsiveImage.title}
+      />
+
+      <div className="container mx-auto">
+          <p className="text-6xl font-bold tracking-tighter mt-2 text-left">
+            {title}
+          </p>
+        <p className="mt-4 text-lg">
+          {text}
         </p>
-      </motion.p>
-      <p className="mt-4 text-lg">
-        {text}
-      </p>
-      <p className="mt-4 text-lg">
-        <Link href="/works">
-          <a title="back">
-            back
-          </a>
-        </Link>
-      </p>
+        <p className="mt-4 text-lg">
+          <Link href="/works">
+            <a title="back">
+              back
+            </a>
+          </Link>
+        </p>
+      </div>
     </Layout>
   )
 }

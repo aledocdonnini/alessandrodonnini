@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Layout({ children }) {
   return (
     <div className="container mx-auto">
-      <header className="flex justify-between items-center mb-10 py-4">
+      <header className=" flex justify-between items-center mb-10 py-4">
         <div className="text-2xl uppercase font-extrabold tracking-tight">
           Logo
         </div>

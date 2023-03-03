@@ -1,13 +1,54 @@
+import { useRef, useEffect, useState, createRef } from "react";
 import * as queries from 'api/queries';
 import fetchData from 'api/dato';
 import { Image as DatoImage } from 'react-datocms';
-import Link from 'next/link';
-import { motion } from "framer-motion";
+import { useRouter } from 'next/router'
+
+import { gsap } from "gsap";
 
 import Layout from 'components/Layout'
+import useWindowSize from 'hooks/useWindowSize'
+
 
 export default function Works({ worksIndex, allWorks }) {
   const { title, text, introImage } = worksIndex
+  const size = useWindowSize();
+  const targetRef = useRef([]);
+  targetRef.current = allWorks.map((element, i) => targetRef.current[i] ?? createRef());
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [active, setActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+
+
+  const handleClick = (i,slug) => {
+    setLoading(true);
+    if (targetRef.current[i]) {
+      setDimensions({
+        width: targetRef.current[i].current.offsetWidth,
+        height: targetRef.current[i].current.offsetHeight
+      });
+      const style = {
+        x: - targetRef.current[i].current.offsetLeft,
+        y: - targetRef.current[i].current.offsetTop,
+        width: size.width,
+        height: size.height,
+        autoRound: false,
+        duration: .75,
+        ease: "circ.inOut",
+        position: "absolute",
+        zIndex: 5
+        // onComplete: onComplete
+      };
+
+      gsap.to(targetRef.current[i].current, style);
+    }
+    setTimeout(() => {
+      router.push(slug);
+    }, 1000);
+  }
+
   return (
     <Layout {...worksIndex}>
       {introImage &&
@@ -18,42 +59,38 @@ export default function Works({ worksIndex, allWorks }) {
           title={introImage?.responsiveImage.title}
         />
       }
+      <div className="container mx-auto">
+        <h1 className="text-6xl font-bold tracking-tighter mt-2">
+          {title}
+        </h1>
 
-      <h1 className="text-6xl font-bold tracking-tighter mt-2">
-        {title}
-      </h1>
+        <p className="mt-4 text-lg">
+          {text}
+        </p>
+      </div>
 
-      <p className="mt-4 text-lg">
-        {text}
-      </p>
-
-      <div className="flex gap-4 mt-10">
-        {allWorks.map(w=>{
-          const { title, text, introImage } = w;
+      <div className="container mx-auto mt-10 grid grid-cols-4 gap-4">
+        {allWorks.map((w,i)=>{
           return (
-            <div className="w-1/3" key={w.id}>
-              <div>
-                <Link href={w.slug}>
-                  <a className="underline hover:no-underline">
-                    <motion.div layoutId={`image-${w.id}`}>
-                      <div className="h-32">
-                        <DatoImage
-                          className="dato-image-cover"
-                          data={introImage?.responsiveImage}
-                          alt={introImage?.responsiveImage.alt}
-                          title={introImage?.responsiveImage.title}
-                        />
-                      </div>
-                    </motion.div>
-                  </a>
-                </Link>
-                <motion.p layoutId={`title-${w.id}`}
-                >
-                  <p className="text-xl font-bold text-center">
-                    {title}
-                  </p>
-                </motion.p>
-              </div>
+            <div
+              id={w.id}
+              key={w.id}
+              className={`cursor-pointer h-[200px] ${w.slug}`}
+              onClick={() => !loading && handleClick(i, w.slug,)}
+            >
+              <DatoImage
+                ref={targetRef.current[i]}
+                className="dato-image-cover h-full z-2"
+                data={w.introImage?.responsiveImage}
+                alt={w.introImage?.responsiveImage.alt}
+                title={w.introImage?.responsiveImage.title}
+              />
+              <p className="text-4xl font-bold">
+                {w.title}
+              </p>
+              <p className="text-xl">
+                {w.text}
+              </p>
             </div>
           )
         })
