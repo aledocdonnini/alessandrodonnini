@@ -8,7 +8,7 @@ import useWindowSize from 'hooks/useWindowSize'
 export default function Home({ homepage }) {
   const { title, text, introImage } = homepage
   const scrollRef = useHorizontalScroll();
-  const widths = [200, 300, 400, 500, 600]
+  const widths = [150, 200, 450, 650, 700]
   const size = useWindowSize();
 
   return (
@@ -43,13 +43,13 @@ export default function Home({ homepage }) {
                     {loc.events.map((e,i)=>{
                       let fakeW = widths[Math.floor(Math.random() * widths.length)];
                       return(
-                        <div style={{ width: fakeW + 'px' }} className={`shrink-0 justify-self-start  sticky top-0 left-1 relative odd:bg-gray even:bg-grayM min-w-[100px] mr-2 rounded-md`} key={i}>
+                        <div style={{ width: fakeW + 'px' }} className={`shrink-0 justify-self-start  sticky top-0 left-1 relative odd:bg-gray even:bg-grayM min-w-[100px] rounded-md`} key={i}>
                           <div className={`shadow-[-8px_0_0_0_#222] rounded-md h-full inline-block align-top  text-white py-2 `} key={i}>
                             <div className='absolute top-0 -left-[16px] w-[8px] h-[8px] bg-[transparent] rounded-tr-md shadow-[2px_-2px_0_2px_#222]'>
                             </div>
                             <div className='absolute bottom-0 -left-[16px] w-[8px] h-[8px] bg-[transparent] rounded-br-md shadow-[2px_2px_0_2px_#222]'>
                             </div>
-                            <div className='absolute top-0 left-0 bottom-0 w-[8px] bg-[#00aa00] rounded-l-md'>
+                            <div className='absolute top-0 left-0 bottom-0 w-[8px] bg-[#66cc66] rounded-l-md'>
                             </div>
                             <div style={{maxWidth: size.width - 50 + 'px'}}>
                               <div className='px-4'>
