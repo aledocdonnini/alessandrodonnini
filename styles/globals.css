@@ -61,3 +61,13 @@ a {
   object-fit: contain;
   object-position: center;
 }
+
+.gradient-time {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 99px,
+    gray 99px 100px
+  );
+  background-position: 0 0;
+  background-repeat: repeat-x;
+}
