@@ -1,13 +1,16 @@
 import Aurora from "components/Aurora";
 import Squares from "components/Squares";
+import useWindowSize from "hooks/useWindowSize";
 
 export default function Home() {
+  const size = useWindowSize();
+  const squareSize = size.width >= 768 ? 40 : 20;
   return (
     <>
       <Aurora colorStops={["#00d8ff", "#66ff9c", "#00d8ff"]} speed={0.5} />
       <Squares
         speed={0.5}
-        squareSize={40}
+        squareSize={squareSize}
         direction="down" // up, down, left, right, diagonal
         borderColor="rgba(102, 255, 156,.05)"
         hoverFillColor="rgba(102, 255, 156,.15)"
