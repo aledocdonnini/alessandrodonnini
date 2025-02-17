@@ -32,6 +32,15 @@ module.exports = {
         "2xl": "6rem",
       },
     },
+    animation: {
+      pulse: "pulse 1s ease-in-out infinite",
+    },
+    keyframes: {
+      pulse: {
+        "0%, 25%, 75%, 100%": { opacity: "1" },
+        "50%": { opacity: "0" },
+      },
+    },
     extend: {
       spacing: {
         128: "32rem",

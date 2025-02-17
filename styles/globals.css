@@ -45,10 +45,25 @@ a {
   top: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 1;
 }
+.squares-canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  display: block;
+  z-index: 2;
+}
+
 .text-shadow {
-  text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
+  text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px #66ff9c;
+}
+.box-shadow {
+  mix-blend-mode: exclusion;
+  box-shadow: 0 0 20px rgba(10, 175, 230, 1);
 }
 
 .dato-image-contain,
