@@ -12,7 +12,7 @@ export default function Home() {
         borderColor="rgba(102, 255, 156,.05)"
         hoverFillColor="rgba(102, 255, 156,.15)"
       />
-      <div className="h-screen flex items-end justify-start p-[10vw] md:p-[3vw] bg-black text-[#daf6ff] text-[6vw] md:text-[2vw] leading-[0.9] text-shadow">
+      <div className="h-screen flex items-start justify-start p-[10vw] md:p-[3vw] bg-black text-[#daf6ff] text-[6vw] md:text-[1.5vw] leading-[0.9] text-shadow">
         <div className="relative z-10">
           <div>Alessandro</div>
           <div>

@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "Proto Mono";
-  src: url("./ProtoMono.ttf");
+  src: url("/ProtoMono.ttf");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
